@@ -1,0 +1,23 @@
+#!/bin/bash
+
+FILE_NAME=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+
+DIRECTORY_NAME="$FILE_NAME"
+ELEMENT_DEFINITION_FILE_NAME="$FILE_NAME-ts.ts"
+STYLESHEET_FILE_NAME="$FILE_NAME.styles.ts"
+INTERFACE_FILE_NAME="$FILE_NAME.interface.ts"
+CLASS_NAME=""
+
+FILE_NAME_WORD_ARRAY=$(echo $FILE_NAME | tr "-" "\n")
+
+for WORD in $FILE_NAME_WORD_ARRAY; do
+  CAPITALIZED_WORD="$(tr '[:lower:]' '[:upper:]' <<< ${WORD:0:1})${WORD:1}"
+  CLASS_NAME+="${CAPITALIZED_WORD}"
+done
+
+CLASS_FILE_NAME+="$CLASS_NAME.ts"
+
+sed "s/REPLACE_ME/$CLASS_NAME/g" "$TEMPLATES_ROOT/LitComponentTemplate.ts" > "$CLASS_FILE_NAME"
+sed "s/REPLACE_ME/$CLASS_NAME/g" "$TEMPLATES_ROOT/lit-component-template.styles.ts" > "$STYLESHEET_FILE_NAME"
+sed "s/REPLACE_ME/$CLASS_NAME/g" "$TEMPLATES_ROOT/lit-component-template.interface.ts" > "$INTERFACE_FILE_NAME"
+sed -e "s/REPLACE_1_ME/$CLASS_NAME/g" -e "s/REPLACE_2_ME/$DIRECTORY_NAME/g" "$TEMPLATES_ROOT/lit-component-template-ts.ts" > "$ELEMENT_DEFINITION_FILE_NAME"
