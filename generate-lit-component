@@ -17,7 +17,9 @@ done
 
 CLASS_FILE_NAME+="$CLASS_NAME.ts"
 
-sed "s/REPLACE_ME/$CLASS_NAME/g" "$TEMPLATES_ROOT/LitComponentTemplate.ts" > "$CLASS_FILE_NAME"
-sed "s/REPLACE_ME/$CLASS_NAME/g" "$TEMPLATES_ROOT/lit-component-template.styles.ts" > "$STYLESHEET_FILE_NAME"
-sed "s/REPLACE_ME/$CLASS_NAME/g" "$TEMPLATES_ROOT/lit-component-template.interface.ts" > "$INTERFACE_FILE_NAME"
-sed -e "s/REPLACE_1_ME/$CLASS_NAME/g" -e "s/REPLACE_2_ME/$DIRECTORY_NAME/g" "$TEMPLATES_ROOT/lit-component-template-ts.ts" > "$ELEMENT_DEFINITION_FILE_NAME"
+mkdir "$DIRECTORY_NAME"
+
+sed "s/REPLACE_ME/$CLASS_NAME/g" "$TEMPLATES_ROOT/LitComponentTemplate.ts" > "$DIRECTORY_NAME/$CLASS_FILE_NAME"
+sed "s/REPLACE_ME/$CLASS_NAME/g" "$TEMPLATES_ROOT/lit-component-template.styles.ts" > "$DIRECTORY_NAME/$STYLESHEET_FILE_NAME"
+sed "s/REPLACE_ME/$CLASS_NAME/g" "$TEMPLATES_ROOT/lit-component-template.interface.ts" > "$DIRECTORY_NAME/$INTERFACE_FILE_NAME"
+sed -e "s/REPLACE_1_ME/$CLASS_NAME/g" -e "s/REPLACE_2_ME/$DIRECTORY_NAME/g" "$TEMPLATES_ROOT/lit-component-template-ts.ts" > "$DIRECTORY_NAME/$ELEMENT_DEFINITION_FILE_NAME"
