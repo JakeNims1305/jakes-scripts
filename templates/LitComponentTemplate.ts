@@ -8,6 +8,15 @@ export class REPLACE_ME extends LitElement implements IREPLACE_ME {
     ];
   }
 
+  // Lifecycle Methods -------------------------------------------------------//
+  override connectedCallback(): void {
+    super.connectedCallback();
+  }
+
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
+  }
+
   // Render ------------------------------------------------------------------//
   override render(): HTMLTemplateResult {
     return html``;
